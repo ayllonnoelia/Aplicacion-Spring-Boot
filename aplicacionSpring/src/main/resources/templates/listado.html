@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<title>Listado de productos</title>
+	
+    <style>
+
+    #hueco{
+        margin-bottom: 0;
+        padding: 5px;
+        padding-left: 10px;
+    }
+
+    .myButton {
+            box-shadow:inset 0px 1px 0px 0px #fce2c1;
+            background:linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
+            background-color:#ffc477;
+            border:1px solid #eeb44f;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:15px;
+            font-weight:bold;
+            padding:6px 24px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #cc9f52;
+            float:right;
+    }
+    .myButton:hover {
+        background:linear-gradient(to bottom, #fb9e25 5%, #ffc477 100%);
+        background-color:#fb9e25;
+        color:white;
+        text-decoration:none;
+    }
+    .myButton:active {
+        position:relative;
+        top:1px;
+        text-decoration:none;
+    }
+    </style>
+</head>
+<body>
+    <div class="container mt-4" >
+    <br>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Lista de productos</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+			        <p class="col-2"><strong>Id</strong></p>
+			        <p class="col-2"><strong>Nombre</strong></p>
+			        <p class="col-2"><strong>Precio</strong></p>
+			        <a class="col-2"></a>
+			        <a class="col-2"></a>
+			    </div>
+                <table class="table">
+                    <tbody>
+                        <th:block th:each="producto: ${productos}" class='row' style='border: 1px solid black;border-radius:15px;margin-bottom:10px;'>
+                        	<tr>
+                            <td class='col-2' id='hueco'>[[${producto.id}]]</td>
+                            <td class='col-2' id='hueco'>[[${producto.name}]]</td>
+                            <td class='col-2' id='hueco'>[[${producto.price}]]</td>
+                            <td>
+                            	<a th:href="@{'/modificar/' + ${producto.id}}" style="color:#1E1AEB" class='col'>Modificar Producto</a>
+                            </td>
+                            <td>
+                            	<a th:href="@{'/eliminarProducto/' + ${producto.id}}" style="color:#1E1AEB" class='col'>Eliminar Producto</a>
+                            </td>
+                        	</tr>
+                        	</th:block>
+                    </tbody>
+
+                </table>
+			<div class="row">
+			  <div><a th:href="@{/}" class="myButton">Volver al menú principal</a></div>
+			</div>
+            </div>
+        </div>
+        <br>
+    </div>
+
+</body>
+</html>
